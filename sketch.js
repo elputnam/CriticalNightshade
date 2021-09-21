@@ -27,7 +27,7 @@ function setup() {
 }
 
 function draw() {
-  background(3600, 100, 100, 10);
+  background(360, 100, 100, 1);
   // imageMode(CENTER);
   // tint(random(300,360), 100, 100)
   // x = map(mouseX, 0, width, width*.25, width*.75)
@@ -36,7 +36,7 @@ function draw() {
   // image(capture, width/2 + + random(-stretch, stretch), height/2 + random(-stretch, stretch), 
   // width*.25 + random(-stretch, stretch), height*.25 + random(-stretch, stretch)); 
   //image(capture, width/2, height/2, random(width*.5, width), random(height*.5, height*.75));
- if (frameCount%5==0){
+ if (frameCount%15==0){
     image(capture, x, y, width*.25, height*.25);
     x += width*.25;
     if (x >= width){
@@ -49,10 +49,10 @@ function draw() {
     }
    }
   
-  for (let i = 0; i < swarm.length; i++){
-    swarm[i].update();
-    swarm[i].display();
-  }
+  // for (let i = 0; i < swarm.length; i++){
+  //   swarm[i].update();
+  //   swarm[i].display();
+  // }
 
   
   
