@@ -2,7 +2,7 @@
 
 let capture;
 let base;
-let wiggle = 10;
+let wiggle = 100;
 let stretch = 100;
 let x;
 let y;
@@ -14,8 +14,9 @@ function setup() {
   base = height;
   let num = width*0.02;
   frameRate(15);
+  x  = 0;
+  y = 0;
   // x = width/2;
-  y = height/2;
   //web cam capture
   capture = createCapture(VIDEO);
   capture.size(640, 480);
@@ -26,19 +27,35 @@ function setup() {
 }
 
 function draw() {
-  background(360, 100, 100, 10);
-  imageMode(CENTER);
+  background(3600, 100, 100, 10);
+  // imageMode(CENTER);
   // tint(random(300,360), 100, 100)
   // x = map(mouseX, 0, width, width*.25, width*.75)
   //image(capture, mouseX, mouseY, 128, 96);
-  image(capture, width/2, height/2, random(width*.5, width), random(height*.5, height*.75));
+  
   // image(capture, width/2 + + random(-stretch, stretch), height/2 + random(-stretch, stretch), 
   // width*.25 + random(-stretch, stretch), height*.25 + random(-stretch, stretch)); 
+  //image(capture, width/2, height/2, random(width*.5, width), random(height*.5, height*.75));
+ if (frameCount%5==0){
+    image(capture, x, y, width*.25, height*.25);
+    x += width*.25;
+    if (x >= width){
+      x = 0;
+      y += height*.25
+    }
+    
+    if (y >= height){
+      y = 0;
+    }
+   }
   
   for (let i = 0; i < swarm.length; i++){
     swarm[i].update();
     swarm[i].display();
   }
+
+  
+  
   // noFill();
   // for (let j = 0; j < 20; j++ ){
     // circle(mouseX, mouseY, 5*j);
@@ -64,7 +81,7 @@ class Element{
     this.amp = createVector(random(20, width/2), random(20, height/2));
     this.H1 = random(200,300);
     this.H2 = random(175, 255);
-    this.rad = random(height*.02, height*.05);
+    this.rad = random(height*.002, height*.02);
     this.len = random(4, 6);
   }
 
